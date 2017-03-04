@@ -4,7 +4,10 @@ ARGF.each_line do |e|
     depth = Regexp.last_match(1).length
     h="h" + depth.to_s
     headline = Regexp.last_match(2).strip
-    name=headline.downcase.gsub(/'+/,'').gsub(/[^[:alnum:]]+/,'-').gsub(/--+/,'').gsub(/^-+|-+$/,'')
+    # Delete single quote, such as in contractions
+    # Change non-alphanumeric to dash, such as spaces and punctuation
+    # Delete leading/trailing dashes
+    # name=headline.downcase.gsub(/'+/,'').gsub(/[^[:alnum:]]+/,'-').gsub(/^-+|-+$/,'')
     anchor="<#{h}><a name=\"#{name}\">#{headline}</a></#{h}>"
   }
   puts e
