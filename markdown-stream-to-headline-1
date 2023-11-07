@@ -1,1 +1,15 @@
-awk '/^# +/{ sub(/^# +/,"",$0); sub(/ +$/,"",$0); print; exit };'
+#!/bin/sh
+
+# Markdown stream to headline
+#
+# Input a markdown stream, and output the first headline content.
+# 
+# Syntax:
+#
+#     stdin | markdown-stream-to-headline
+#
+# Example:
+#
+#     cat foo.md | markdown-stream-to-headline
+#
+awk '/^#+[[:space:]]+[^[:space:]]/{ sub(/^#+[[:space:]]+/,"",$0); sub(/[[:space:]]*#*[[:space:]]*$/,"",$0); print; exit };'
