@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Markdown reader to headline.
+#
+# Read markdown from a file/stream; print its first headline content.
+#
+# Syntax:
+#
+#     stdin | markdown-read-to-headline
+#
+#     markdown-read-to-headline <file>
+#
+# Example:
+#
+#     markdown-read-to-headline example.md
+#
+#     cat example.md | markdown-read-to-headline
+
+grep -m1 '^##*[[:space:]][[:space:]]*[^[:space:]]' "$@" | 
+sed 's/^#*[[:space:]]*//; s/[[:space:]]*#*[[:space:]]*$//;'
